@@ -61,7 +61,7 @@ export class NuevaMarca extends React.Component { // eslint-disable-line react/p
       },
     } = this.props;
     const { name, nameFocused } = this.state;
-    const disabledBtn = !name;
+    const disabledBtn = !name.trim();
     return (
       <div>
         <Helmet

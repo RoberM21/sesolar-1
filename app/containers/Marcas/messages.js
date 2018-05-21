@@ -19,5 +19,12 @@ export default defineMessages({
     noButtonLabel: 'No',
   },
   dialogTitle: 'Eliminar',
-  dialogMessage: '¿Seguro que desea eliminar el cliente?',
+  dialogMessage: '¿Seguro que desea eliminar la marca?',
+  table: {
+    name: 'Nombre',
+  },
+  buttons: {
+    delete: 'Eliminar',
+    edit: 'Editar',
+  },
 });

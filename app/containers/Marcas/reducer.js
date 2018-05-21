@@ -17,7 +17,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  brand: [],
+  brands: [],
   loadingBrands: false,
   snackbar: {
     open: false,

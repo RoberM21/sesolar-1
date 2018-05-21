@@ -6,10 +6,14 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { map } from 'lodash';
 import { browserHistory } from 'react-router';
 import Helmet from 'react-helmet';
 import Subheader from 'components/Subheader';
 import FullPageLoader from 'components/FullPageLoader';
+import MenuItem from 'material-ui/MenuItem';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Empty from 'components/Icons/empty.svg';
 import {
@@ -18,9 +22,11 @@ import {
   TableHeader,
   TableRow,
   TableHeaderColumn,
+  TableRowColumn,
 } from 'material-ui/Table';
 import Snackbar from 'material-ui/Snackbar';
 import Dialog from 'material-ui/Dialog';
+import MoreHorIcon from 'material-ui/svg-icons/navigation/more-horiz';
 import CircularProgress from 'material-ui/CircularProgress';
 import { createStructuredSelector } from 'reselect';
 import makeSelectMarcas from './selectors';
@@ -43,6 +49,8 @@ import {
   raisedButtonStyles,
   dialogStyles,
   closeIconStyle,
+  IconButtonStyles,
+  IconMenuStyles,
 } from './materialInlineStyles';
 import { styles } from './styles';
 import {
@@ -66,13 +74,14 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
     dispatch(setSnackbarState(false, ''));
   }
 
-  handleDeleteBrand = (id) => () => {
+  handleDeleteBrand = () => {
+    const { brandId } = this.state;
     const { dispatch } = this.props;
-    dispatch(getDeleteRequest(id));
+    dispatch(getDeleteRequest(brandId));
   }
-  handleOpenDeleteDialog = (item) => {
+  handleOpenDeleteDialog = (id) => {
     const { Marcas: { showDeleteModal }, dispatch } = this.props;
-    this.setState({ userToDeleteId: item.id });
+    this.setState({ brandId: id });
     dispatch(openDeleteDialog(!showDeleteModal));
   }
   render() {
@@ -90,7 +99,7 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
           label={messages.dialogButtons.noButtonLabel}
           labelStyle={flatButtonStyles.labelStyle}
           style={flatButtonStyles.style}
-          onClick={this.handleOpenStoreDialog}
+          onClick={this.handleOpenDeleteDialog}
         />,
         <RaisedButton
           label={messages.dialogButtons.yesButtonLabel}
@@ -99,7 +108,7 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
           backgroundColor={raisedButtonStyles.backgroundColor}
           style={raisedButtonStyles.buttonStyle}
           buttonStyle={raisedButtonStyles.buttonStyle}
-          onClick={this.handleDeleteUser}
+          onClick={this.handleDeleteBrand}
         />,
       ]
     );
@@ -137,7 +146,7 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
         {!loadingBrands ? (
           <UsersContainer>
             {
-              brands.length > 0 ?
+              brands.length !== 0 ?
                 <MainDivStyled>
                   { !subLoading ?
                     <Table>
@@ -154,7 +163,30 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
                         </TableRow>
                       </TableHeader>
                       <TableBody displayRowCheckbox={false}>
-                        {this.filter()}
+                        { map(brands, (item, index) =>
+                          <div key={`marcas-${index}`}>
+                            <TableRow style={styles.RowHeight}>
+                              <TableRowColumn style={styles.CellStyle}>{item.name}</TableRowColumn>
+                              <TableRowColumn style={styles.ButtonCellStyle}>
+                                <IconMenu
+                                  style={IconMenuStyles}
+                                  iconButtonElement={<IconButton style={IconButtonStyles}><MoreHorIcon /></IconButton>}
+                                  anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+                                  targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                                >
+                                  <MenuItem
+                                    primaryText={messages.buttons.edit}
+                                    onClick={this.handleEditBrand}
+                                  />
+                                  <MenuItem
+                                    primaryText={messages.buttons.delete}
+                                    onClick={() => this.handleOpenDeleteDialog(item.id)}
+                                  />
+                                </IconMenu>
+                              </TableRowColumn>
+                            </TableRow>
+                          </div>
+                        )}
                       </TableBody>
                     </Table> : <CircularProgress style={{ textAlign: 'center', margin: '16px auto', display: 'block' }} size={80} thickness={5} />
                   }

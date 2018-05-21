@@ -13,7 +13,10 @@ import { GET_BRAND_REQUEST } from './constants';
 
 export function* watchNewBrand(action) {
   try {
-    yield call(newBrand, action.name);
+    const body = {
+      name: action.name,
+    };
+    yield call(newBrand, body);
     yield put(saveBrandSuccess(messages.success));
     browserHistory.push('/marcas');
   } catch (e) {
