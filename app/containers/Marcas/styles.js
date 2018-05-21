@@ -1,0 +1,31 @@
+export const styles = {
+  TableHeaderHeight: {
+    height: '70px',
+  },
+  TableHeaderStyled: {
+    width: '48%',
+    height: '22px',
+    fontSize: '16px',
+    fontWeight: 'normal',
+    fontStyle: 'normal',
+    fontStretch: 'normal',
+    paddingLeft: '0',
+    lineHeight: 'normal',
+    letterSpacing: 'normal',
+    textAlign: 'left',
+    color: '#8c8c8c',
+  },
+  TableHeaderStyledButtons: {
+    width: '10%',
+    height: '22px',
+    fontSize: '16px',
+    fontWeight: 'normal',
+    fontStyle: 'normal',
+    fontStretch: 'normal',
+    paddingLeft: '37px',
+    lineHeight: 'normal',
+    letterSpacing: 'normal',
+    textAlign: 'left',
+    color: '#8c8c8c',
+  },
+};

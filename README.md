@@ -1,2 +1,2 @@
-# sesolar
-Proyecto Residencias
+# react-boilerplate
+boilerplate del richard
