@@ -9,6 +9,7 @@ import {
   GET_BRAND_REQUEST,
   SAVE_BRAND_SUCCESS,
   SAVE_BRAND_FAIL,
+  SET_SNACKBAR_STATE,
 } from './constants';
 
 export function defaultAction() {
@@ -35,5 +36,13 @@ export function saveBrandFail(error) {
   return {
     type: SAVE_BRAND_FAIL,
     error,
+  };
+}
+
+export function setSnackbarState(open, text) {
+  return {
+    type: SET_SNACKBAR_STATE,
+    open,
+    text,
   };
 }

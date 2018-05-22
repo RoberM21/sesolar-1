@@ -70,6 +70,7 @@ export class Clientes extends React.Component { // eslint-disable-line react/pre
   handleAddProject = (userId) => {
     browserHistory.push(`/clientes/${userId}/agregar-proyecto`);
   }
+
   handleRedirectDetail = (user) => {
     browserHistory.push({
       pathname: `/clientes/${user.id}/detalle`,

@@ -2,29 +2,29 @@ import { call, put, take, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import {
-  editClient,
+  editBrand,
 } from './api';
 import {
-  getClientSuccess,
-  getClientFail,
+  saveEditSuccess,
+  saveEditFail,
 } from './actions';
 import messages from './messages';
-import { GET_CLIENT_REQUEST } from './constants';
+import { GET_EDIT_REQUEST } from './constants';
 
-export function* watchEditClient(action) {
+export function* watchEditBrand(action) {
   try {
-    yield call(editClient, action.body);
-    yield put(getClientSuccess(messages.success));
-    browserHistory.push('/clientes');
+    yield call(editBrand, action.body);
+    browserHistory.push('/marcas');
+    yield put(saveEditSuccess(messages.success));
   } catch (e) {
-    yield put(getClientFail(messages.error));
+    yield put(saveEditFail(messages.error));
   }
 }
 
 
 export function* defaultSaga() {
   const watcher = yield [
-    takeLatest(GET_CLIENT_REQUEST, watchEditClient),
+    takeLatest(GET_EDIT_REQUEST, watchEditBrand),
   ];
   yield take(LOCATION_CHANGE);
   yield watcher.map((obj) => cancel(obj));

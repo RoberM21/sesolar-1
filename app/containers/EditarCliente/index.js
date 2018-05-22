@@ -113,12 +113,12 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
       emailFocused,
     } = this.state;
     const disabledBtn =
-      !ClientName ||
-      !CompanyContact ||
-      !CompanyName ||
-      !Phone ||
-      !CompanyAddress ||
-      !Email;
+      !ClientName.trim() ||
+      !CompanyContact.trim() ||
+      !CompanyName.trim() ||
+      !Phone.trim() ||
+      !CompanyAddress.trim() ||
+      !Email.trim();
     return (
       <div>
         <Helmet

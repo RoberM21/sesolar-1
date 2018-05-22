@@ -69,6 +69,7 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
   handleOpenDialog = () => {
     browserHistory.push('/marcas/nueva');
   }
+
   handleRequestCloseSnackBar = () => {
     const { dispatch } = this.props;
     dispatch(setSnackbarState(false, ''));
@@ -79,6 +80,14 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
     const { dispatch } = this.props;
     dispatch(getDeleteRequest(brandId));
   }
+
+  handleEditBrand = (marca) => () => {
+    browserHistory.push({
+      pathname: `/marcas/${marca.id}/editar`,
+      state: { marca },
+    });
+  }
+
   handleOpenDeleteDialog = (id) => {
     const { Marcas: { showDeleteModal }, dispatch } = this.props;
     this.setState({ brandId: id });
@@ -164,28 +173,26 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
                       </TableHeader>
                       <TableBody displayRowCheckbox={false}>
                         { map(brands, (item, index) =>
-                          <div key={`marcas-${index}`}>
-                            <TableRow style={styles.RowHeight}>
-                              <TableRowColumn style={styles.CellStyle}>{item.name}</TableRowColumn>
-                              <TableRowColumn style={styles.ButtonCellStyle}>
-                                <IconMenu
-                                  style={IconMenuStyles}
-                                  iconButtonElement={<IconButton style={IconButtonStyles}><MoreHorIcon /></IconButton>}
-                                  anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-                                  targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                                >
-                                  <MenuItem
-                                    primaryText={messages.buttons.edit}
-                                    onClick={this.handleEditBrand}
-                                  />
-                                  <MenuItem
-                                    primaryText={messages.buttons.delete}
-                                    onClick={() => this.handleOpenDeleteDialog(item.id)}
-                                  />
-                                </IconMenu>
-                              </TableRowColumn>
-                            </TableRow>
-                          </div>
+                          <TableRow key={`marcas-${index}`} style={styles.RowHeight}>
+                            <TableRowColumn style={styles.CellStyle}>{item.name}</TableRowColumn>
+                            <TableRowColumn style={styles.ButtonCellStyle}>
+                              <IconMenu
+                                style={IconMenuStyles}
+                                iconButtonElement={<IconButton style={IconButtonStyles}><MoreHorIcon /></IconButton>}
+                                anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+                                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                              >
+                                <MenuItem
+                                  primaryText={messages.buttons.edit}
+                                  onClick={this.handleEditBrand(item)}
+                                />
+                                <MenuItem
+                                  primaryText={messages.buttons.delete}
+                                  onClick={() => this.handleOpenDeleteDialog(item.id)}
+                                />
+                              </IconMenu>
+                            </TableRowColumn>
+                          </TableRow>
                         )}
                       </TableBody>
                     </Table> : <CircularProgress style={{ textAlign: 'center', margin: '16px auto', display: 'block' }} size={80} thickness={5} />

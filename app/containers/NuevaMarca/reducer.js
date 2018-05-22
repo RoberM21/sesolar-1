@@ -9,6 +9,7 @@ import {
   DEFAULT_ACTION,
   SAVE_BRAND_SUCCESS,
   SAVE_BRAND_FAIL,
+  SET_SNACKBAR_STATE,
 } from './constants';
 
 const initialState = fromJS({
@@ -28,6 +29,14 @@ function nuevaMarcaReducer(state = initialState, action) {
     case SAVE_BRAND_FAIL:
       return state
       .set('snackbar', { open: true, text: action.error });
+    case SET_SNACKBAR_STATE: {
+      const { open, text } = action;
+      const snackbarState = {
+        open,
+        text,
+      };
+      return state.set('snackbar', snackbarState);
+    }
     default:
       return state;
   }

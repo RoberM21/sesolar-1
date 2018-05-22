@@ -1,82 +1,72 @@
 /*
  *
- * NuevaMarca
+ * EditarMarca
  *
  */
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import Helmet from 'react-helmet';
+import { browserHistory } from 'react-router';
 import { ALPHANUMERIC } from 'utils/regex';
+import RaisedButton from 'material-ui/RaisedButton';
 import Subheader from 'components/Subheader';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import { createStructuredSelector } from 'reselect';
-import makeSelectNuevaMarca from './selectors';
+import makeSelectEditarMarca from './selectors';
 import messages from './messages';
-import {
-  FormContainer,
-  Container,
-  StepContainer,
-  StepNumber,
-  StepDescription,
-  PersonalDataContainer,
-  ButtonsSection,
-  StyledFlatButton,
-} from './styledComponents';
 import {
   textFieldStyles,
   flatButtonStyles,
   raisedButtonStyles,
 } from './materialInlineStyles';
 import {
-  getBrandRequest,
-  setSnackbarState,
-} from './actions';
-export class NuevaMarca extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  FormContainer,
+  StepContainer,
+  StepNumber,
+  StepDescription,
+  PersonalDataContainer,
+  ButtonsSection,
+  StyledFlatButton,
+  Container,
+} from './styledComponents';
+import { getEditRequest } from './actions';
+
+export class EditarMarca extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
-    name: '',
     nameFocused: false,
   }
 
-  handleRequestCloseSnackBar = () => {
-    const { dispatch } = this.props;
-    dispatch(setSnackbarState(false, ''));
+  componentWillMount() {
+    const { location: { state: { marca } } } = this.props;
+    this.setState({ name: marca.name, id: marca.id });
   }
 
-  handleOpenDialog = () => {
+  handleEditBrand = () => {
+    const { name, id } = this.state;
+    const body = { name, id };
     const { dispatch } = this.props;
-    dispatch(setSnackbarState(false, ''));
-    browserHistory.push('/marcas/nueva');
+    dispatch(getEditRequest(body));
   }
-
   handleOnChange = (e) => {
     const { target: { name, value } } = e;
     this.setState({ [name]: value.replace(ALPHANUMERIC, '') });
   }
 
-  handleCreteBrand = () => {
-    const { name } = this.state;
-    const { dispatch } = this.props;
-    dispatch(getBrandRequest(name));
-  }
-
   render() {
+    const { snackbar } = this.props.EditarMarca;
     const {
-      NuevaMarca: {
-        snackbar,
-      },
-    } = this.props;
-    const { name, nameFocused } = this.state;
+      nameFocused,
+      name,
+    } = this.state;
     const disabledBtn = !name.trim();
     return (
       <div>
         <Helmet
-          title="Marcas"
+          title="Editar Marca"
           meta={[
-            { name: 'description', content: 'Description of Marcas' },
+            { name: 'description', content: 'Description of EditarMarca' },
           ]}
         />
         <Subheader
@@ -128,13 +118,13 @@ export class NuevaMarca extends React.Component { // eslint-disable-line react/p
             onClick={browserHistory.goBack}
           />
           <RaisedButton
-            label={messages.save}
+            label={messages.edit}
             labelStyle={raisedButtonStyles.labelStyle}
             labelColor={raisedButtonStyles.labelColor}
             backgroundColor={raisedButtonStyles.backgroundColor}
             style={raisedButtonStyles.buttonStyle}
             buttonStyle={raisedButtonStyles.buttonStyle}
-            onClick={this.handleCreteBrand}
+            onClick={this.handleEditBrand}
             disabled={disabledBtn}
           />
         </ButtonsSection>
@@ -149,13 +139,14 @@ export class NuevaMarca extends React.Component { // eslint-disable-line react/p
   }
 }
 
-NuevaMarca.propTypes = {
-  NuevaMarca: PropTypes.object,
+EditarMarca.propTypes = {
+  EditarMarca: PropTypes.object,
+  location: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  NuevaMarca: makeSelectNuevaMarca(),
+  EditarMarca: makeSelectEditarMarca(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -164,4 +155,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NuevaMarca);
+export default connect(mapStateToProps, mapDispatchToProps)(EditarMarca);

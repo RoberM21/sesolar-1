@@ -57,10 +57,10 @@ export function openDeleteDialog(open) {
   };
 }
 
-export function getDeleteRequest(clientId) {
+export function getDeleteRequest(brandId) {
   return {
     type: GET_DELETE_REQUEST,
-    clientId,
+    brandId,
   };
 }
 

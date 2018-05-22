@@ -27,4 +27,6 @@ export default defineMessages({
     delete: 'Eliminar',
     edit: 'Editar',
   },
+  successDelete: 'Marca eliminada.',
+  errorDelete: 'Error al eliminar marca.',
 });

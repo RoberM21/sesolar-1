@@ -37,7 +37,7 @@ export const styles = {
     lineHeight: 'normal',
     letterSpacing: 'normal',
     paddingLeft: '0',
-    paddingRight: '34',
+    paddingRight: '34px',
     textAlign: 'center',
     color: '#494949',
     width: '13%',

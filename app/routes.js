@@ -307,6 +307,26 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+        }, {
+          path: '/marcas/:id/editar',
+          name: 'editarMarca',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/EditarMarca/reducer'),
+              import('containers/EditarMarca/sagas'),
+              import('containers/EditarMarca'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('editarMarca', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
         },
       ],
     }, {
