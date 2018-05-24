@@ -295,7 +295,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
             onClick={browserHistory.goBack}
           />
           <RaisedButton
-            label={'Guardar'}
+            label={'Editar'}
             labelStyle={raisedButtonStyles.labelStyle}
             labelColor={raisedButtonStyles.labelColor}
             backgroundColor={raisedButtonStyles.backgroundColor}

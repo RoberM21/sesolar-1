@@ -24,6 +24,7 @@ const initialState = fromJS({
       brands: {
         name: 'Marca economica',
       },
+      id: 1,
     },
     {
       name: 'Producto 01',

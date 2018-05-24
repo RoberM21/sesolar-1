@@ -1,4 +1,4 @@
-import { call, put, fork, take, cancel, takeLatest } from 'redux-saga/effects';
+import { call, put, take, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import {
   getProducts,
@@ -24,7 +24,7 @@ export function* watchGetProducts() {
 
 export function* watchDeleteProduct(action) {
   try {
-    const productId = action.brandId;
+    const productId = action.productId;
     yield call(deleteProduct, productId);
     yield put(getDeleteSuccess(messages.successDelete));
     const products = yield call(getProducts);

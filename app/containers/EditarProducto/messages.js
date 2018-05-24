@@ -11,4 +11,11 @@ export default defineMessages({
     defaultMessage: 'This is EditarProducto container !',
   },
   subHeaderTitle: 'Editar producto',
+  error: 'Error al cargar marcas',
+  name: 'Nombre producto',
+  description: 'Descripción',
+  brand: 'Selecciona una marca',
+  cost: 'Costo',
+  success: 'Producto editado con éxito.',
+  errEdit: 'Erro al editar producto.',
 });
