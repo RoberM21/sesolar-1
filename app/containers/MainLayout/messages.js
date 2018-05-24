@@ -24,5 +24,5 @@ export default defineMessages({
   },
   close: 'Iniciar sesión',
   modalTitle: 'Tu sesión ha expirado',
-  relogin: 'Para volver a realizar tu cobranza inicia sesión.',
+  relogin: 'Para volver a ingresar inicia sesión.',
 });

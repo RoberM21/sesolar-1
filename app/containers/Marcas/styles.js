@@ -5,7 +5,7 @@ export const styles = {
   TableHeaderStyled: {
     width: '48%',
     height: '22px',
-    paddingLeft: '150px',
+    paddingLeft: '27%',
     fontSize: '16px',
     fontWeight: 'normal',
     fontStyle: 'normal',

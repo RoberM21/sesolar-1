@@ -42,7 +42,7 @@ export const UsersContainer = styled.div`
   width: 100%;
   min-height: calc(120vh - 220px);
   float: left;
-  padding: 2% 39% 32px 13%;
+  padding: 2% 13% 32px 13%;
 `;
 
 export const StyledFlatButton = styled(FlatButton)`

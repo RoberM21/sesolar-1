@@ -12,4 +12,23 @@ export default defineMessages({
   },
   subHeaderTitle: 'Productos',
   subHeaderButtonLabel: 'Nuevo producto',
+  error: 'Error al cargar productos',
+  table: {
+    name: 'Producto',
+    description: 'Descripción',
+    cost: 'Costo',
+    marca: 'Marca',
+  },
+  buttons: {
+    edit: 'Editar',
+    delete: 'Eliminar',
+  },
+  dialogButtons: {
+    yesButtonLabel: 'Sí',
+    noButtonLabel: 'No',
+  },
+  dialogTitle: 'Eliminar',
+  dialogMessage: '¿Seguro que desea eliminar el producto?',
+  successDelete: 'Producgo eliminado con éxito',
+  errorDelete: 'Error al eliminar producto',
 });

@@ -36,17 +36,17 @@ export function getBrandsFail(error) {
   };
 }
 
+export function setLoadingAction() {
+  return {
+    type: SET_LOADING,
+  };
+}
+
 export function setSnackbarState(open, text) {
   return {
     type: SET_SNACKBAR_STATE,
     open,
     text,
-  };
-}
-
-export function setLoadingAction() {
-  return {
-    type: SET_LOADING,
   };
 }
 

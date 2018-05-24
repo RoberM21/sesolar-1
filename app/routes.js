@@ -327,6 +327,46 @@ export default function createRoutes(store) {
 
             importModules.catch(errorLoading);
           },
+        }, {
+          path: '/productos/nuevo',
+          name: 'nuevoProducto',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/NuevoProducto/reducer'),
+              import('containers/NuevoProducto/sagas'),
+              import('containers/NuevoProducto'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('nuevoProducto', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        }, {
+          path: '/productos/:id/editar',
+          name: 'editarProducto',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/EditarProducto/reducer'),
+              import('containers/EditarProducto/sagas'),
+              import('containers/EditarProducto'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('editarProducto', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
         },
       ],
     }, {
