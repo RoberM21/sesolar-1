@@ -46,7 +46,7 @@ module.exports = (options) => ({
           },
         },
       ],
-    }, {
+    }, { test: /\.(eot|woff|woff2|otf|ttf)([?]?.*)$/, loader: 'file-loader' }, {
       test: /\.html$/,
       loader: 'html-loader',
     }, {
@@ -70,11 +70,18 @@ module.exports = (options) => ({
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new webpack.NamedModulesPlugin(),
+    new webpack.ContextReplacementPlugin(/^\.\/locale$/, (context) => {
+      if (!/\/moment\//.test(context.context)) { return; }
+      // context needs to be modified in place
+      Object.assign(context, {
+        regExp: /^\.\/(en|es)/,
+        // point to the locale data folder relative to moment's src/lib/locale
+        request: '../../locale',
+      });
+    }),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],

@@ -247,7 +247,7 @@ export class NuevoCliente extends React.Component { // eslint-disable-line react
                 }
                 floatingLabelFocusStyle={textFieldStyles.floatingLabelStyle}
                 floatingLabelText={messages.phone}
-                maxLength="18"
+                maxLength="20"
               />
             </PersonalDataContainer>
             <StepContainer>

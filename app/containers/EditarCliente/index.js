@@ -249,7 +249,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 }
                 floatingLabelFocusStyle={textFieldStyles.floatingLabelStyle}
                 floatingLabelText={messages.phone}
-                maxLength="18"
+                maxLength="20"
               />
             </PersonalDataContainer>
             <StepContainer>

@@ -29,6 +29,9 @@ module.exports = require('./webpack.base.babel')({
     library: '[name]',
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
     new webpack.DllPlugin({ name: '[name]', path: join(outputPath, '[name].json') }), // eslint-disable-line no-new
   ],
   performance: {

@@ -73,7 +73,7 @@ export const styles = {
     transition: 'all .25s',
   },
   select: {
-    marginTop: '-16px',
+    marginTop: '-25px',
   },
   color: {
     color: `${blueColor}`,

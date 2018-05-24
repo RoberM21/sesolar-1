@@ -17,6 +17,10 @@ module.exports = require('./webpack.base.babel')({
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       children: true,

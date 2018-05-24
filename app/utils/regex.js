@@ -1,7 +1,7 @@
 export const getCelphone = (value) => {
   const inputOriginal = value;
   let input;
-  input = inputOriginal.replace(/\D$./g, '');
+  input = inputOriginal.replace(/\D/g, '');
   input = input.substring(0, 10);
   const sizePhone = input.length;
   if (sizePhone === 0) {
