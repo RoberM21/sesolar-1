@@ -14,10 +14,9 @@ export default defineMessages({
     clients: 'CLIENTES',
     brands: 'MARCAS',
     products: 'PRODUCTOS',
-    cotizaciones: 'COTIZACIONES',
     proyects: 'PROYECTOS',
     sesolar: 'SESOLAR',
-    inventary: 'INVENTARIO',
+    prospeccion: 'PROSPECCION',
   },
   buttons: {
     cancel: 'Salir',

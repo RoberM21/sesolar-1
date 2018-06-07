@@ -22,10 +22,10 @@ export function defaultAction() {
   };
 }
 
-export function getProductsSuccess(brands) {
+export function getProductsSuccess(products) {
   return {
     type: GET_PRODUCTS_SUCCESS,
-    brands,
+    products,
   };
 }
 

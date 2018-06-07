@@ -31,10 +31,10 @@ function nuevoClienteReducer(state = initialState, action) {
     }
     case GET_CLIENT_SUCCESS:
       return state
-        .set('snackbar', action.message);
+        .set('snackbar', { open: true, text: action.message });
     case GET_CLIENT_FAIL:
       return state
-        .set('snackbar', action.error);
+        .set('snackbar', { open: true, text: action.error });
     default:
       return state;
   }

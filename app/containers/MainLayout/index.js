@@ -42,14 +42,11 @@ export class MainLayout extends React.Component { // eslint-disable-line react/p
     if (window.location.pathname.toString().includes('productos')) {
       selectedItem = messages.menuOptions.products;
     }
-    if (window.location.pathname.toString().includes('cotizaciones')) {
-      selectedItem = messages.menuOptions.cotizaciones;
-    }
     if (window.location.pathname.toString().includes('proyectos')) {
       selectedItem = messages.menuOptions.proyects;
     }
-    if (window.location.pathname.toString().includes('inventario')) {
-      selectedItem = messages.menuOptions.inventary;
+    if (window.location.pathname.toString().includes('prospeccion')) {
+      selectedItem = messages.menuOptions.prospeccion;
     }
 
     const actions = [

@@ -19,7 +19,7 @@ const initialState = fromJS({
     text: '',
   },
   product: {
-    name: 'Producto 01',
+    productName: 'Producto 01',
     description: 'Marca economica',
     cost: 250,
     brands: {

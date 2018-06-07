@@ -7,6 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import numeral from 'numeral';
 import { ALPHANUMERIC, ONLY_NUMBER } from 'utils/regex';
 import Subheader from 'components/Subheader';
 import TextField from 'material-ui/TextField';
@@ -40,10 +41,9 @@ import {
 
 export class EditarProducto extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentWillMount() {
-    // const { location: { state: { product } } } = this.props;
     const { product } = this.props.EditarProducto;
     this.setState({
-      name: product.name,
+      productName: product.productName,
       description: product.description,
       cost: product.cost,
       brandId: 1,
@@ -69,14 +69,14 @@ export class EditarProducto extends React.Component { // eslint-disable-line rea
   handleCreteUser = () => {
     const { dispatch } = this.props;
     const {
-      name,
+      productName,
       description,
       cost,
       brandId,
     } = this.state;
     const amount = cost.replace(/\D/g, '');
     const body = {
-      name,
+      productName,
       description,
       cost: amount,
       brandId,
@@ -86,7 +86,7 @@ export class EditarProducto extends React.Component { // eslint-disable-line rea
 
   render() {
     const {
-      name,
+      productName,
       nameFocused,
       description,
       descriptionFocused,
@@ -99,7 +99,7 @@ export class EditarProducto extends React.Component { // eslint-disable-line rea
       snackbar,
     } = this.props.EditarProducto;
     const disabledBtn =
-      !name ||
+      !productName ||
       !description ||
       !brandId ||
       !cost;
@@ -126,7 +126,7 @@ export class EditarProducto extends React.Component { // eslint-disable-line rea
             </StepContainer>
             <PersonalDataContainer>
               <TextField
-                name="name"
+                name="productName"
                 style={
                   nameFocused
                   ? textFieldStyles.rootStyleFocused
@@ -135,12 +135,12 @@ export class EditarProducto extends React.Component { // eslint-disable-line rea
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={name}
+                value={productName}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ nameFocused: true })}
                 onBlur={() => this.setState({ nameFocused: false })}
                 floatingLabelStyle={
-                  nameFocused || name
+                  nameFocused || productName
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }
@@ -213,7 +213,7 @@ export class EditarProducto extends React.Component { // eslint-disable-line rea
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={cost}
+                value={numeral(cost).format('$0,0.00')}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ costFocused: true })}
                 onBlur={() => this.setState({ costFocused: false })}

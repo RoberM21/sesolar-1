@@ -29,6 +29,6 @@ export default defineMessages({
   },
   dialogTitle: 'Eliminar',
   dialogMessage: '¿Seguro que desea eliminar el producto?',
-  successDelete: 'Producgo eliminado con éxito',
+  successDelete: 'Producto eliminado con éxito',
   errorDelete: 'Error al eliminar producto',
 });

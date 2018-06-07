@@ -14,8 +14,8 @@ import { GET_CLIENT_REQUEST } from './constants';
 export function* watchEditClient(action) {
   try {
     yield call(editClient, action.body);
-    yield put(getClientSuccess(messages.success));
     browserHistory.push('/clientes');
+    yield put(getClientSuccess(messages.success));
   } catch (e) {
     yield put(getClientFail(messages.error));
   }

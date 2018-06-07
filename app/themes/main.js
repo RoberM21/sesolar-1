@@ -12,7 +12,7 @@ import {
 export default {
   fontFamily: 'Roboto',
   palette: {
-    primary1Color: '#00b74f',
+    primary1Color: '#3865c1',
     primary2Color: '#27464b',
     primary3Color: grey400,
     accent1Color: '#09beb6',

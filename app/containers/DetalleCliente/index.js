@@ -30,23 +30,23 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
   componentWillMount() {
     const { location: { state: { user } } } = this.props;
     this.setState({
-      ClientName: user.ClientName,
-      CompanyContact: user.CompanyContact,
-      CompanyName: user.CompanyName,
-      CompanyAddress: user.CompanyAddress,
-      Email: user.Email,
-      Phone: getCelphone(user.Phone),
+      clientName: user.clientName,
+      contactName: user.contactName,
+      companyName: user.companyName,
+      address: user.address,
+      email: user.Email,
+      phone: getCelphone(user.phone),
       id: user.id,
     });
   }
   render() {
     const {
-      ClientName,
-      CompanyContact,
-      Phone,
-      CompanyName,
-      CompanyAddress,
-      Email,
+      clientName,
+      contactName,
+      phone,
+      companyName,
+      address,
+      email,
     } = this.state;
     return (
       <div>
@@ -70,7 +70,7 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
               underlineShow={false}
               hintStyle={textFieldStyles.hintStyle}
               inputStyle={textFieldStyles.inputStyle}
-              value={ClientName}
+              value={clientName}
               floatingLabelStyle={textFieldStyles.defaultTextField}
               disabled
               floatingLabelText={messages.clientName}
@@ -80,7 +80,7 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
               underlineShow={false}
               hintStyle={textFieldStyles.hintStyle}
               inputStyle={textFieldStyles.inputStyle}
-              value={CompanyContact}
+              value={contactName}
               floatingLabelStyle={textFieldStyles.defaultTextField}
               disabled
               floatingLabelText={messages.companyContact}
@@ -90,7 +90,7 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
               underlineShow={false}
               hintStyle={textFieldStyles.hintStyle}
               inputStyle={textFieldStyles.inputStyle}
-              value={getCelphone(Phone)}
+              value={getCelphone(phone)}
               floatingLabelStyle={textFieldStyles.defaultTextField}
               disabled
               floatingLabelText={messages.phone}
@@ -102,7 +102,7 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
               underlineShow={false}
               hintStyle={textFieldStyles.hintStyle}
               inputStyle={textFieldStyles.inputStyle}
-              value={CompanyName}
+              value={companyName}
               floatingLabelStyle={textFieldStyles.defaultTextField}
               disabled
               floatingLabelText={messages.companyName}
@@ -112,7 +112,7 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
               underlineShow={false}
               hintStyle={textFieldStyles.hintStyle}
               inputStyle={textFieldStyles.inputStyle}
-              value={CompanyAddress}
+              value={address}
               floatingLabelStyle={textFieldStyles.defaultTextField}
               disabled
               floatingLabelText={messages.companyAddress}
@@ -122,7 +122,7 @@ export class DetalleCliente extends React.Component { // eslint-disable-line rea
               underlineShow={false}
               hintStyle={textFieldStyles.hintStyle}
               inputStyle={textFieldStyles.inputStyle}
-              value={Email}
+              value={email}
               floatingLabelStyle={textFieldStyles.defaultTextField}
               disabled
               floatingLabelText={messages.email}

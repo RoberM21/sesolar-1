@@ -47,12 +47,12 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
   componentWillMount() {
     const { location: { state: { user } } } = this.props;
     this.setState({
-      ClientName: user.ClientName,
-      CompanyContact: user.CompanyContact,
-      CompanyName: user.CompanyName,
-      CompanyAddress: user.CompanyAddress,
-      Email: user.Email,
-      Phone: getCelphone(user.Phone),
+      clientName: user.clientName,
+      contactName: user.contactName,
+      companyName: user.companyName,
+      address: user.address,
+      email: user.email,
+      phone: getCelphone(user.phone),
       id: user.id,
     });
   }
@@ -60,22 +60,22 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
   handleEditUser = () => {
     const { dispatch } = this.props;
     const {
-      ClientName,
-      CompanyAddress,
-      CompanyContact,
-      CompanyName,
-      Phone,
-      Email,
+      clientName,
+      address,
+      contactName,
+      companyName,
+      phone,
+      email,
       id,
     } = this.state;
-    const phone = Phone.replace(/\D/g, '');
+    const cellphone = phone.replace(/\D/g, '');
     const body = {
-      ClientName,
-      CompanyAddress,
-      CompanyContact,
-      CompanyName,
-      Phone: phone,
-      Email,
+      clientName,
+      address,
+      contactName,
+      companyName,
+      phone: cellphone,
+      email,
       id,
     };
     dispatch(getClientRequest(body));
@@ -83,9 +83,9 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
 
   handleOnChange = (e) => {
     const { target: { name, value } } = e;
-    if (name === 'Phone') {
+    if (name === 'phone') {
       this.setState({ [name]: getCelphone(value) });
-    } else if (name === 'Email') {
+    } else if (name === 'email') {
       this.setState({ [name]: value });
     } else {
       this.setState({ [name]: value.replace(ALPHANUMERIC, '') });
@@ -99,26 +99,26 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
       },
     } = this.props;
     const {
-      CompanyAddress,
+      address,
       companyAddressFocused,
-      ClientName,
+      clientName,
       clientNameFocused,
-      CompanyContact,
+      contactName,
       companyContactFocused,
-      CompanyName,
+      companyName,
       companyNameFocused,
-      Phone,
+      phone,
       phoneFocused,
-      Email,
+      email,
       emailFocused,
     } = this.state;
     const disabledBtn =
-      !ClientName.trim() ||
-      !CompanyContact.trim() ||
-      !CompanyName.trim() ||
-      !Phone.trim() ||
-      !CompanyAddress.trim() ||
-      !Email.trim();
+      !clientName.trim() ||
+      !contactName.trim() ||
+      !companyName.trim() ||
+      !phone.trim() ||
+      !address.trim() ||
+      !email.trim();
     return (
       <div>
         <Helmet
@@ -138,7 +138,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
             </StepContainer>
             <PersonalDataContainer>
               <TextField
-                name="ClientName"
+                name="clientName"
                 style={
                   clientNameFocused
                   ? textFieldStyles.rootStyleFocused
@@ -147,13 +147,13 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={ClientName}
+                value={clientName}
                 onChange={this.handleOnChange}
                 autoFocus
                 onFocus={() => this.setState({ clientNameFocused: true })}
                 onBlur={() => this.setState({ clientNameFocused: false })}
                 floatingLabelStyle={
-                  clientNameFocused || ClientName
+                  clientNameFocused || clientName
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }
@@ -162,7 +162,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 maxLength="100"
               />
               <TextField
-                name="CompanyName"
+                name="companyName"
                 style={
                   companyNameFocused
                   ? textFieldStyles.rootStyleFocused
@@ -171,19 +171,19 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={CompanyName}
+                value={companyName}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ companyNameFocused: true })}
                 onBlur={() => this.setState({ companyNameFocused: false })}
                 floatingLabelStyle={
-                  companyNameFocused || CompanyName
+                  companyNameFocused || companyName
                   ? textFieldStyles.focusedTextField : textFieldStyles.defaultTextField}
                 floatingLabelFocusStyle={textFieldStyles.floatingLabelStyle}
                 floatingLabelText={messages.companyName}
                 maxLength="100"
               />
               <TextField
-                name="CompanyContact"
+                name="contactName"
                 style={
                   companyContactFocused
                   ? textFieldStyles.rootStyleFocused
@@ -192,12 +192,12 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={CompanyContact}
+                value={contactName}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ companyContactFocused: true })}
                 onBlur={() => this.setState({ companyContactFocused: false })}
                 floatingLabelStyle={
-                  companyContactFocused || CompanyContact
+                  companyContactFocused || contactName
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }
@@ -206,7 +206,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 maxLength="100"
               />
               <TextField
-                name="CompanyAddress"
+                name="address"
                 style={
                   companyAddressFocused
                   ? textFieldStyles.rootStyleFocused
@@ -215,12 +215,12 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={CompanyAddress}
+                value={address}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ companyAddressFocused: true })}
                 onBlur={() => this.setState({ companyAddressFocused: false })}
                 floatingLabelStyle={
-                  companyAddressFocused || CompanyAddress
+                  companyAddressFocused || address
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }
@@ -229,7 +229,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 maxLength="100"
               />
               <TextField
-                name="Phone"
+                name="phone"
                 style={
                   phoneFocused
                   ? textFieldStyles.rootStyleFocused
@@ -238,12 +238,12 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={Phone}
+                value={phone}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ phoneFocused: true })}
                 onBlur={() => this.setState({ phoneFocused: false })}
                 floatingLabelStyle={
-                  phoneFocused || Phone
+                  phoneFocused || phone
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }
@@ -262,7 +262,7 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
             </StepContainer>
             <EmailContainer>
               <TextField
-                name="Email"
+                name="email"
                 style={
                   emailFocused
                   ? textFieldStyles.rootStyleFocused
@@ -271,12 +271,12 @@ export class EditarCliente extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={Email}
+                value={email}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ emailFocused: true })}
                 onBlur={() => this.setState({ emailFocused: false })}
                 floatingLabelStyle={
-                  emailFocused || Email
+                  emailFocused || email
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }

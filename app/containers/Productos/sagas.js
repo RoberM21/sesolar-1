@@ -1,4 +1,4 @@
-import { call, put, take, cancel, takeLatest } from 'redux-saga/effects';
+import { call, put, take, cancel, takeLatest, fork } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import {
   getProducts,
@@ -36,7 +36,7 @@ export function* watchDeleteProduct(action) {
 
 export function* defaultSaga() {
   const watcher = yield [
-    // fork(watchGetProducts),
+    fork(watchGetProducts),
     takeLatest(GET_DELETE_REQUEST, watchDeleteProduct),
   ];
   yield take(LOCATION_CHANGE);

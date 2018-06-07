@@ -140,7 +140,7 @@ export class Marcas extends React.Component { // eslint-disable-line react/prefe
     return (
       <div>
         <Helmet
-          title="Marcas"
+          title="Catálogo Marcas"
           meta={[
             { name: 'description', content: 'Description of Marcas' },
           ]}

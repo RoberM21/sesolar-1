@@ -16,25 +16,7 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  products: [
-    {
-      name: 'Producto 01',
-      description: 'Marca economica',
-      cost: 250,
-      brands: {
-        name: 'Marca economica',
-      },
-      id: 1,
-    },
-    {
-      name: 'Producto 01',
-      description: 'Marca economica',
-      cost: 250,
-      brands: {
-        name: 'Marca economica',
-      },
-    },
-  ],
+  products: [],
   loadingProducts: false,
   loading: false,
   snackbar: {

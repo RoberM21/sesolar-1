@@ -41,7 +41,7 @@ import {
 
 export class NuevoProducto extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
-    name: '',
+    productName: '',
     description: '',
     cost: '',
     brandId: '',
@@ -55,14 +55,14 @@ export class NuevoProducto extends React.Component { // eslint-disable-line reac
   handleCreteUser = () => {
     const { dispatch } = this.props;
     const {
-      name,
+      productName,
       description,
       cost,
       brandId,
     } = this.state;
     const amount = cost.replace(/\D/g, '');
     const body = {
-      name,
+      productName,
       description,
       cost: amount,
       brandId,
@@ -87,7 +87,7 @@ export class NuevoProducto extends React.Component { // eslint-disable-line reac
 
   render() {
     const {
-      name,
+      productName,
       nameFocused,
       description,
       descriptionFocused,
@@ -100,7 +100,7 @@ export class NuevoProducto extends React.Component { // eslint-disable-line reac
       snackbar,
     } = this.props.NuevoProducto;
     const disabledBtn =
-      !name ||
+      !productName ||
       !description ||
       !brandId ||
       !cost;
@@ -127,7 +127,7 @@ export class NuevoProducto extends React.Component { // eslint-disable-line reac
             </StepContainer>
             <PersonalDataContainer>
               <TextField
-                name="name"
+                name="productName"
                 style={
                   nameFocused
                   ? textFieldStyles.rootStyleFocused
@@ -136,12 +136,12 @@ export class NuevoProducto extends React.Component { // eslint-disable-line reac
                 underlineShow={false}
                 hintStyle={textFieldStyles.hintStyle}
                 inputStyle={textFieldStyles.inputStyle}
-                value={name}
+                value={productName}
                 onChange={this.handleOnChange}
                 onFocus={() => this.setState({ nameFocused: true })}
                 onBlur={() => this.setState({ nameFocused: false })}
                 floatingLabelStyle={
-                  nameFocused || name
+                  nameFocused || productName
                   ? textFieldStyles.focusedTextField
                   : textFieldStyles.defaultTextField
                 }

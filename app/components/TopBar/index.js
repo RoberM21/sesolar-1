@@ -50,9 +50,8 @@ class TopBar extends React.Component { // eslint-disable-line react/prefer-state
     const ClientsOption = selectedItem === messages.menuOptions.clients ? MenuOptionSelected : MenuOption;
     const BrandsOption = selectedItem === messages.menuOptions.brands ? MenuOptionSelected : MenuOption;
     const ProductsOption = selectedItem === messages.menuOptions.products ? MenuOptionSelected : MenuOption;
-    const CotizacionesOption = selectedItem === messages.menuOptions.cotizaciones ? MenuOptionSelected : MenuOption;
     const ProyectsOption = selectedItem === messages.menuOptions.proyects ? MenuOptionSelected : MenuOption;
-    const InventaryOption = selectedItem === messages.menuOptions.inventary ? MenuOptionSelected : MenuOption;
+    const ProspeccionOption = selectedItem === messages.menuOptions.prospeccion ? MenuOptionSelected : MenuOption;
     return (
       <div>
         <TopBarSection>
@@ -77,21 +76,16 @@ class TopBar extends React.Component { // eslint-disable-line react/prefer-state
                 >
                   <a>{messages.menuOptions.products}</a>
                 </ProductsOption>
-                <CotizacionesOption
-                  onClick={() => browserHistory.push('/cotizaciones')}
+                <ProspeccionOption
+                  onClick={() => browserHistory.push('/prospeccion')}
                 >
-                  <a>{messages.menuOptions.cotizaciones}</a>
-                </CotizacionesOption>
+                  <a>{messages.menuOptions.prospeccion}</a>
+                </ProspeccionOption>
                 <ProyectsOption
                   onClick={() => browserHistory.push('/proyectos')}
                 >
                   <a>{messages.menuOptions.proyects}</a>
                 </ProyectsOption>
-                <InventaryOption
-                  onClick={() => browserHistory.push('/inventario')}
-                >
-                  <a>{messages.menuOptions.inventary}</a>
-                </InventaryOption>
               </MenuOptionsSection>
             </MenuOptions>
           </MenuLeftSection>

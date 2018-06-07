@@ -186,11 +186,11 @@ export class Productos extends React.Component { // eslint-disable-line react/pr
                       </TableHeader>
                       <TableBody displayRowCheckbox={false}>
                         { map(products, (item, index) =>
-                          <TableRow key={`marcas-${index}`} style={styles.RowHeight}>
-                            <TableRowColumn style={styles.CellStyleName}>{item.name}</TableRowColumn>
+                          <TableRow key={`product-${index}`} style={styles.RowHeight}>
+                            <TableRowColumn style={styles.CellStyleName}>{item.productName}</TableRowColumn>
                             <TableRowColumn style={styles.CellStyle}>{item.description}</TableRowColumn>
                             <TableRowColumn style={styles.CellStyleCost}>{numeral(item.cost).format('$0,0.00')}</TableRowColumn>
-                            <TableRowColumn style={styles.CellStyle}>{item.brands.name}</TableRowColumn>
+                            <TableRowColumn style={styles.CellStyle}>{item.brand.name}</TableRowColumn>
                             <TableRowColumn style={styles.ButtonCellStyle}>
                               <IconMenu
                                 style={IconMenuStyles}

@@ -23,9 +23,9 @@ function editarClienteReducer(state = initialState, action) {
     case DEFAULT_ACTION:
       return state;
     case GET_CLIENT_SUCCESS:
-      return state.set('snackbar', action.message);
+      return state.set('snackbar', { open: true, text: action.success });
     case GET_CLIENT_FAIL:
-      return state.set('snackbar', action.error);
+      return state.set('snackbar', { open: true, text: action.error });
     default:
       return state;
   }

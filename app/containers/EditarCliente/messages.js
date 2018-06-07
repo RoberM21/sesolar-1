@@ -18,6 +18,6 @@ export default defineMessages({
   phone: 'Teléfono',
   email: 'Correo electrónico',
   address: 'Dirección',
-  success: 'Cliente editado exitosamente.',
+  success: 'Cliente editado con éxito.',
   error: 'Error al editar cliente.',
 });

@@ -47,10 +47,10 @@ class UserItem extends React.Component { // eslint-disable-line react/prefer-sta
             {image && <LevelIcon alt="" src={image} />}
           </Cropper>
         </TableRowColumn>
-        <TableRowColumn style={styles.CellStyle}>{user.ClientName}</TableRowColumn>
-        <TableRowColumn style={styles.CellStyle}>{user.CompanyName}</TableRowColumn>
-        <TableRowColumn style={styles.CellStyle}>{getCelphone(user.Phone)}</TableRowColumn>
-        <TableRowColumn style={styles.CellStyle}>{user.Email}</TableRowColumn>
+        <TableRowColumn style={styles.CellStyle}>{user.clientName}</TableRowColumn>
+        <TableRowColumn style={styles.CellStyle}>{user.companyName}</TableRowColumn>
+        <TableRowColumn style={styles.CellStyle}>{getCelphone(user.phone)}</TableRowColumn>
+        <TableRowColumn style={styles.CellStyle}>{user.email}</TableRowColumn>
         <TableRowColumn style={styles.ButtonCellStyle}>
           <IconMenu
             style={IconMenuStyles}

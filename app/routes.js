@@ -228,26 +228,6 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         }, {
-          path: '/cotizaciones',
-          name: 'cotizaciones',
-          getComponent(nextState, cb) {
-            const importModules = Promise.all([
-              import('containers/Cotizaciones/reducer'),
-              import('containers/Cotizaciones/sagas'),
-              import('containers/Cotizaciones'),
-            ]);
-
-            const renderRoute = loadModule(cb);
-
-            importModules.then(([reducer, sagas, component]) => {
-              injectReducer('cotizaciones', reducer.default);
-              injectSagas(sagas.default);
-              renderRoute(component);
-            });
-
-            importModules.catch(errorLoading);
-          },
-        }, {
           path: '/proyectos',
           name: 'proyectos',
           getComponent(nextState, cb) {
@@ -268,19 +248,19 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         }, {
-          path: '/inventario',
-          name: 'inventario',
+          path: '/prospeccion',
+          name: 'prospeccion',
           getComponent(nextState, cb) {
             const importModules = Promise.all([
-              import('containers/Inventario/reducer'),
-              import('containers/Inventario/sagas'),
-              import('containers/Inventario'),
+              import('containers/Prospeccion/reducer'),
+              import('containers/Prospeccion/sagas'),
+              import('containers/Prospeccion'),
             ]);
 
             const renderRoute = loadModule(cb);
 
             importModules.then(([reducer, sagas, component]) => {
-              injectReducer('inventario', reducer.default);
+              injectReducer('prospeccion', reducer.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });
@@ -361,6 +341,26 @@ export default function createRoutes(store) {
 
             importModules.then(([reducer, sagas, component]) => {
               injectReducer('editarProducto', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        }, {
+          path: '/prospeccion/nuevo',
+          name: 'nuevoProspecto',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/NuevoProspecto/reducer'),
+              import('containers/NuevoProspecto/sagas'),
+              import('containers/NuevoProspecto'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('nuevoProspecto', reducer.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });
