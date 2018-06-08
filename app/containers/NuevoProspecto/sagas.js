@@ -27,7 +27,7 @@ export function* watchSaveProspect(action) {
     const { body } = action;
     yield call(saveProspect, body);
     yield put(saveProspectSuccess(messages.success));
-    browserHistory.push('/prospectos');
+    browserHistory.push('/prospeccion');
   } catch (e) {
     yield put(saveProspectFail(messages.error));
   }

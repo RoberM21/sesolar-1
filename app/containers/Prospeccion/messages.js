@@ -12,5 +12,14 @@ export default defineMessages({
   },
   subHeaderTitle: 'Prospeccion',
   subHeaderButtonLabel: 'Agregar prospecto',
-  errorClient: 'Error al cargar clientes.',
+  error: 'Error al cargar prospectos.',
+  table: {
+    client: 'Cliente',
+    date: 'Fecha',
+    porcentage: 'Porcentaje',
+  },
+  buttons: {
+    edit: 'Editar',
+    delete: 'Eliminar',
+  },
 });

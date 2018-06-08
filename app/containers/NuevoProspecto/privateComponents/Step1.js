@@ -33,7 +33,10 @@ export class Step1 extends React.Component { // eslint-disable-line react/prefer
   }
 
   handleOnChange = (name) => (e) => {
+    const { onClickClient } = this.props;
+    this.setState({ clientId: 'Selecciona un cliente' });
     this.setState({ [name]: e.target.checked });
+    onClickClient(this.state);
   }
 
   handleChange = (e, index, value) => {

@@ -77,16 +77,16 @@ export class NuevoProspecto extends React.Component { // eslint-disable-line rea
     } = this.state;
     const body = {
       clientId,
-      created: new Date(),
-      modified: new Date(),
       tracing: [
         {
           comentary,
           number,
           porcentage,
-          imagenOne,
-          imagenTwo,
-          imagenThree,
+          img: [
+            imagenOne,
+            imagenTwo,
+            imagenThree,
+          ],
         },
       ],
     };
@@ -126,7 +126,7 @@ export class NuevoProspecto extends React.Component { // eslint-disable-line rea
       <RaisedButton
         label={messages.next}
         primary
-        disabled={!clientId}
+        disabled={clientId === 'Selecciona un cliente' || !clientId}
         buttonStyle={Styles.buttonStyle}
         style={Styles.rootStyle}
         onClick={this.switchComponent(currentStep + 1)}

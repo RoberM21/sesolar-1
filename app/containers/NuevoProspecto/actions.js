@@ -12,6 +12,7 @@ import {
   GET_PROSPECT_REQUEST,
   SAVE_PROSPECT_SUCCESS,
   SAVE_PROSPECT_FAIL,
+  SAVE_VALUES,
 } from './constants';
 
 export function defaultAction() {
@@ -62,5 +63,12 @@ export function saveProspectFail(error) {
   return {
     type: SAVE_PROSPECT_FAIL,
     error,
+  };
+}
+
+export function saveValues(body) {
+  return {
+    type: SAVE_VALUES,
+    body,
   };
 }

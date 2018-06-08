@@ -11,3 +11,4 @@ export const GET_CLIENTS_FAIL = 'app/NuevoProspecto/GET_CLIENTS_FAIL';
 export const GET_PROSPECT_REQUEST = 'app/NuevoProspecto/GET_PROSPECT_REQUEST';
 export const SAVE_PROSPECT_SUCCESS = 'app/NuevoProspecto/SAVE_PROSPECT_SUCCESS';
 export const SAVE_PROSPECT_FAIL = 'app/NuevoProspecto/SAVE_PROSPECT_FAIL';
+export const SAVE_VALUES = 'app/NuevoProspecto/SAVE_VALUES';

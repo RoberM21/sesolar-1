@@ -11,6 +11,7 @@ import {
   GET_CLIENTS_FAIL,
   SAVE_PROSPECT_SUCCESS,
   SAVE_PROSPECT_FAIL,
+  SAVE_VALUES,
 } from './constants';
 import messages from './messages';
 
@@ -21,6 +22,7 @@ const initialState = fromJS({
     text: '',
   },
   porcentages: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+  clientId: 'Selecciona un cliente',
 });
 
 function nuevoProspectoReducer(state = initialState, action) {
@@ -39,6 +41,9 @@ function nuevoProspectoReducer(state = initialState, action) {
     case SAVE_PROSPECT_FAIL:
       return state
         .set('snackbar', { open: true, text: action.error });
+    case SAVE_VALUES:
+      return state
+        .set('clientId', action.body);
     default:
       return state;
   }
