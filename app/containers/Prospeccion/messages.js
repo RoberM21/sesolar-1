@@ -19,7 +19,8 @@ export default defineMessages({
     porcentage: 'Porcentaje',
   },
   buttons: {
-    edit: 'Editar',
-    delete: 'Eliminar',
+    add: 'Agregar seguimiento',
+    details: 'Detalle prospecto',
+    convert: 'Convertir en proyecto',
   },
 });

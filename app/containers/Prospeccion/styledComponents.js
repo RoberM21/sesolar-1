@@ -41,3 +41,16 @@ export const ImgEmpty = styled.img`
 export const ContainerEmpty = styled.div`
   text-align: center;
 `;
+
+export const Text = styled.div`
+  padding-left: 24px;
+  padding-right: 24px;
+  height: 15px;
+  text-align: center;
+  font-size: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: inherit;
+`;
+

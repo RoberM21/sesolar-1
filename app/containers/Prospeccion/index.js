@@ -12,6 +12,7 @@ import Helmet from 'react-helmet';
 import { browserHistory } from 'react-router';
 import Subheader from 'components/Subheader';
 import CircularProgress from 'material-ui/CircularProgress';
+import LinearProgress from 'material-ui/LinearProgress';
 import FullPageLoader from 'components/FullPageLoader';
 import Empty from 'components/Icons/empty.svg';
 import Snackbar from 'material-ui/Snackbar';
@@ -36,10 +37,12 @@ import {
   MessageEmpty,
   ImgEmpty,
   ContainerEmpty,
+  Text,
 } from './styledComponents';
 import {
   IconButtonStyles,
   IconMenuStyles,
+  BarStyle,
 } from './materialInlineStyles';
 import messages from './messages';
 import {
@@ -54,6 +57,33 @@ export class Prospeccion extends React.Component { // eslint-disable-line react/
   }
   handleOpenDialog = () => {
     browserHistory.push('/prospeccion/nuevo');
+  }
+  barColor = (status) => {
+    if (status > 0 && status < 33) {
+      return '#F44336';
+    } else if (status > 33 && status < 66) {
+      return '#ffc107';
+    } else if (status > 66 && status <= 100) {
+      return '#1dc064';
+    } return '#bdbdbd';
+  }
+  handleAdd = (item) => () => {
+    browserHistory.push({
+      pathname: `/prospeccion/${item.id}/agregar-seguimiento`,
+      state: { item },
+    });
+  }
+  handleDetails = (item) => () => {
+    browserHistory.push({
+      pathname: `/prospeccion/${item.id}/detalle`,
+      state: { item },
+    });
+  }
+  handleConvert = (item) => () => {
+    browserHistory.push({
+      pathname: `/prospeccion/${item.clientId}/agregar-proyecto`,
+      state: { item },
+    });
   }
   render() {
     const {
@@ -110,7 +140,17 @@ export class Prospeccion extends React.Component { // eslint-disable-line react/
                           <TableRow key={`prospecting-${index}`} style={styles.RowHeight}>
                             <TableRowColumn style={styles.CellStyle}>{item.client.clientName}</TableRowColumn>
                             <TableRowColumn style={styles.CellStyle}>{Moment(item.created).format('LL')}</TableRowColumn>
-                            <TableRowColumn style={styles.CellStyle}>{item.tracing[0].porcentage}</TableRowColumn>
+                            <TableRowColumn style={styles.CellStyle}>
+                              <div>
+                                <LinearProgress
+                                  mode="determinate"
+                                  value={item.tracing[item.tracing.length - 1].porcentage}
+                                  color={this.barColor(item.tracing[item.tracing.length - 1].porcentage)}
+                                  style={BarStyle}
+                                />
+                                <Text>{item.tracing[item.tracing.length - 1].porcentage} %</Text>
+                              </div>
+                            </TableRowColumn>
                             <TableRowColumn style={styles.ButtonCellStyle}>
                               <IconMenu
                                 style={IconMenuStyles}
@@ -119,10 +159,17 @@ export class Prospeccion extends React.Component { // eslint-disable-line react/
                                 targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                               >
                                 <MenuItem
-                                  primaryText={messages.buttons.edit}
+                                  primaryText={messages.buttons.add}
+                                  onClick={this.handleAdd(item)}
                                 />
                                 <MenuItem
-                                  primaryText={messages.buttons.delete}
+                                  primaryText={messages.buttons.details}
+                                  onClick={this.handleDetails(item)}
+                                />
+                                <MenuItem
+                                  disabled={item.tracing[item.tracing.length - 1].porcentage < 100}
+                                  onClick={this.handleConvert(item)}
+                                  primaryText={messages.buttons.convert}
                                 />
                               </IconMenu>
                             </TableRowColumn>

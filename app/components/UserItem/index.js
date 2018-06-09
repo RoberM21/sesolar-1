@@ -37,7 +37,6 @@ class UserItem extends React.Component { // eslint-disable-line react/prefer-sta
       user, image,
       editClient,
       storeUser,
-      addProject,
       detailClient,
     } = this.props;
     return (
@@ -58,10 +57,6 @@ class UserItem extends React.Component { // eslint-disable-line react/prefer-sta
             anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
             targetOrigin={{ horizontal: 'left', vertical: 'top' }}
           >
-            <MenuItem
-              primaryText={messages.buttons.add}
-              onClick={addProject}
-            />
             <MenuItem
               primaryText={messages.buttons.detail}
               onClick={detailClient}
@@ -84,7 +79,6 @@ class UserItem extends React.Component { // eslint-disable-line react/prefer-sta
 UserItem.propTypes = {
   user: PropTypes.object,
   image: PropTypes.string,
-  addProject: PropTypes.func,
   editClient: PropTypes.func,
   detailClient: PropTypes.func,
   storeUser: PropTypes.func,

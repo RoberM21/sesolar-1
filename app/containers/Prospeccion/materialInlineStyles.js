@@ -8,3 +8,8 @@ export const IconButtonStyles = {
   width: 24,
   height: 24,
 };
+
+export const BarStyle = {
+  height: '8px',
+  borderRadius: '100px',
+};

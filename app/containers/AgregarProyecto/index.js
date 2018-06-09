@@ -59,9 +59,19 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
     imageUrlFive: '',
     urlImageSix: '',
     imageUrlSix: '',
+    client: '',
+    clientFocused: true,
     monthSelected: moment().month(),
     daySelected: parseInt(moment().subtract('days').format('D'), 10),
     yearSelected: moment().year().toString(),
+  }
+
+  componentWillMount() {
+    const { location: { state: { item } } } = this.props;
+    this.setState({ client: item.client.clientName });
+    console.log('------------------------------------');
+    console.log(item);
+    console.log('------------------------------------');
   }
 
   onUpload = (field) => {
@@ -214,6 +224,8 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
       daySelected,
       costFocused,
       cost,
+      client,
+      clientFocused,
     } = this.state;
     const {
       AgregarProyecto: {
@@ -253,6 +265,26 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
             <Text>{messages.info}</Text>
           </StepContainer>
           <ContainerInfo>
+            <TextField
+              name="client"
+              style={
+                clientFocused
+                ? textFieldStyles.rootStyleFocused
+                : textFieldStyles.rootStyle
+              }
+              disabled
+              underlineShow={false}
+              inputStyle={textFieldStyles.inputStyle}
+              value={client}
+              floatingLabelStyle={
+                clientFocused || client
+                ? textFieldStyles.focusedTextField
+                : textFieldStyles.defaultTextField
+              }
+              floatingLabelFocusStyle={textFieldStyles.floatingLabelStyle}
+              floatingLabelText={messages.client}
+              maxLength="200"
+            />
             <TextField
               name="description"
               style={
@@ -546,6 +578,7 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
 
 AgregarProyecto.propTypes = {
   AgregarProyecto: PropTypes.object,
+  location: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

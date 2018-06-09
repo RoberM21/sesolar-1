@@ -20,4 +20,5 @@ export default defineMessages({
   date: 'Fecha de comienzo',
   cost: 'Costo',
   change: 'Cambiar imagen',
+  client: 'Cliente',
 });

@@ -168,7 +168,7 @@ export default function createRoutes(store) {
             importModules.catch(errorLoading);
           },
         }, {
-          path: 'clientes/:id/agregar-proyecto',
+          path: 'prospeccion/:id/agregar-proyecto',
           name: 'agregarProyecto',
           getComponent(nextState, cb) {
             const importModules = Promise.all([
@@ -361,6 +361,46 @@ export default function createRoutes(store) {
 
             importModules.then(([reducer, sagas, component]) => {
               injectReducer('nuevoProspecto', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        }, {
+          path: '/prospeccion/:id/agregar-seguimiento',
+          name: 'agregarSeguimiento',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/AgregarSeguimiento/reducer'),
+              import('containers/AgregarSeguimiento/sagas'),
+              import('containers/AgregarSeguimiento'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('agregarSeguimiento', reducer.default);
+              injectSagas(sagas.default);
+              renderRoute(component);
+            });
+
+            importModules.catch(errorLoading);
+          },
+        }, {
+          path: '/prospeccion/:id/detalle',
+          name: 'detalleSeguimiento',
+          getComponent(nextState, cb) {
+            const importModules = Promise.all([
+              import('containers/DetalleSeguimiento/reducer'),
+              import('containers/DetalleSeguimiento/sagas'),
+              import('containers/DetalleSeguimiento'),
+            ]);
+
+            const renderRoute = loadModule(cb);
+
+            importModules.then(([reducer, sagas, component]) => {
+              injectReducer('detalleSeguimiento', reducer.default);
               injectSagas(sagas.default);
               renderRoute(component);
             });

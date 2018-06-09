@@ -90,6 +90,9 @@ export class NuevoProspecto extends React.Component { // eslint-disable-line rea
         },
       ],
     };
+    console.log('------------------------------------');
+    console.log(body);
+    console.log('------------------------------------');
     dispatch(getProspectRequest(body));
   }
   switchComponent = (newStep) => () => {

@@ -67,10 +67,6 @@ export class Clientes extends React.Component { // eslint-disable-line react/pre
     browserHistory.push('/clientes/nuevo');
   }
 
-  handleAddProject = (userId) => {
-    browserHistory.push(`/clientes/${userId}/agregar-proyecto`);
-  }
-
   handleRedirectDetail = (user) => {
     browserHistory.push({
       pathname: `/clientes/${user.id}/detalle`,
@@ -106,7 +102,6 @@ export class Clientes extends React.Component { // eslint-disable-line react/pre
           key={user.id}
           user={user}
           image={imageDefault}
-          addProject={() => this.handleAddProject(user.id)}
           editClient={() => this.handleClickUpdate(user)}
           detailClient={() => this.handleRedirectDetail(user)}
           storeUser={() => this.handleOpenStoreDialog(user)}
