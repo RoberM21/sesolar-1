@@ -66,18 +66,16 @@ export class DetalleSeguimiento extends React.Component { // eslint-disable-line
       return '#1dc064';
     } return '#bdbdbd';
   }
+  handlePhoto = (name) => {
+    const image = `http://localhost:8080/api/images/prospecting/download/${name}`;
+    image.toString();
+    return <DistributorImage src={image} />;
+  }
   render() {
     const {
       client,
       tracing,
     } = this.state;
-    const { DetalleSeguimiento: {
-        nameSeguimiento,
-      },
-    } = this.props;
-    console.log('------------------------------------');
-    console.log('tracing', tracing, nameSeguimiento);
-    console.log('------------------------------------');
     return (
       <div>
         <Helmet
@@ -177,21 +175,21 @@ export class DetalleSeguimiento extends React.Component { // eslint-disable-line
                     <DashedBox>
                       {
                         item.img[0]
-                        ? <DistributorImage src={item.img[0]} />
+                        ? this.handlePhoto(item.img[0])
                         : <Image color="#456bae" />
                       }
                     </DashedBox>
                     <DashedBox>
                       {
                         item.img[1]
-                          ? <DistributorImage src={item.img[1]} />
+                          ? this.handlePhoto(item.img[1])
                           : <Image color="#456bae" />
                       }
                     </DashedBox>
                     <DashedBox>
                       {
                         item.img[2]
-                          ? <DistributorImage src={item.img[2]} />
+                          ? this.handlePhoto(item.img[2])
                           : <Image color="#456bae" />
                       }
                     </DashedBox>
@@ -209,6 +207,7 @@ export class DetalleSeguimiento extends React.Component { // eslint-disable-line
 DetalleSeguimiento.propTypes = {
   location: PropTypes.object,
   DetalleSeguimiento: PropTypes.object,
+  // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

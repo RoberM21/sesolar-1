@@ -19,4 +19,6 @@ export default defineMessages({
   progress: 'Porcentaje de aceptación',
   imagenes: 'Imágenes',
   comentary: 'Comentarios',
+  success: 'Foto agregada agregada correctamente.',
+  error: 'Error al cargar foto.',
 });

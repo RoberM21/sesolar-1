@@ -9,6 +9,8 @@ import moment from 'moment';
 import { map, range } from 'lodash';
 import {
   DEFAULT_ACTION,
+  SAVE_PROJECT_SUCCESS,
+  SAVE_PROJECT_FAIL,
 } from './constants';
 
 const initialState = fromJS({
@@ -46,6 +48,12 @@ function agregarProyectoReducer(state = initialState, action) {
   switch (action.type) {
     case DEFAULT_ACTION:
       return state;
+    case SAVE_PROJECT_SUCCESS:
+      return state
+        .set('snackbar', { open: true, text: action.message });
+    case SAVE_PROJECT_FAIL:
+      return state
+        .set('snackbar', { open: true, text: action.error });
     default:
       return state;
   }

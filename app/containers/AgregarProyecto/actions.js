@@ -17,7 +17,7 @@ export function defaultAction() {
   };
 }
 
-export function saveProjectRequest(body) {
+export function getProjectRequest(body) {
   return {
     type: SAVE_PROJECT_REQUEST,
     body,

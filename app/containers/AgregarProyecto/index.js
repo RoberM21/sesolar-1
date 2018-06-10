@@ -19,7 +19,6 @@ import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
 import MenuItem from 'material-ui/MenuItem';
 import FileUpload from 'material-ui/svg-icons/file/file-upload';
-import { createUrlForSrc } from 'utils/helper';
 import { createStructuredSelector } from 'reselect';
 import makeSelectAgregarProyecto from './selectors';
 import messages from './messages';
@@ -44,6 +43,7 @@ import {
   flatButtonStyles,
   raisedButtonStyles,
 } from './materialInlineStyles';
+import { getProjectRequest } from './actions';
 
 export class AgregarProyecto extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
@@ -68,7 +68,11 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
 
   componentWillMount() {
     const { location: { state: { item } } } = this.props;
-    this.setState({ client: item.client.clientName });
+    this.setState({
+      client: item.client.clientName,
+      clientId: item.clientId,
+      prospectingId: item.id,
+    });
     console.log('------------------------------------');
     console.log(item);
     console.log('------------------------------------');
@@ -98,69 +102,86 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
       default:
         break;
     }
-    const reader = new FileReader();
+    const fileName = file.name;
     const fileType = file.type.split('/').pop();
-    reader.readAsArrayBuffer(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onloadend = () => {
-      const newImage = createUrlForSrc(reader.result, fileType, file.size);
-      this.setState({
-        snackbar: newImage.snackbar,
-      });
-      if (!newImage.snackbar.open) {
-        switch (field) {
-          case 'imageOne':
-            this.setState({
-              urlImageOne: reader.result,
-              typeOne: fileType,
-              fileNameOne: file.name,
-              imageUrlOne: newImage.imageUrl,
-            });
-            break;
-          case 'imageTwo':
-            this.setState({
-              urlImageTwo: reader.result,
-              typeTwo: fileType,
-              fileNameTwo: file.name,
-              imageUrlTwo: newImage.imageUrl,
-            });
-            break;
-          case 'imageThree':
-            this.setState({
-              urlImageThree: reader.result,
-              typeThree: fileType,
-              fileNameThree: file.name,
-              imageUrlThree: newImage.imageUrl,
-            });
-            break;
-          case 'imageFour':
-            this.setState({
-              urlImageFour: reader.result,
-              typeFour: fileType,
-              fileNameFour: file.name,
-              imageUrlFour: newImage.imageUrl,
-            });
-            break;
-          case 'imageFive':
-            this.setState({
-              urlImageFive: reader.result,
-              typeFive: fileType,
-              fileNameFive: file.name,
-              imageUrlFive: newImage.imageUrl,
-            });
-            break;
-          case 'imageSix':
-            this.setState({
-              urlImageSix: reader.result,
-              typeSix: fileType,
-              fileNameSix: file.name,
-              imageUrlSix: newImage.imageUrl,
-            });
-            break;
-          default:
-            break;
-        }
+      switch (field) {
+        case 'imageOne':
+          this.setState({
+            urlImageOne: reader.result,
+            typeOne: fileType,
+            fileNameOne: fileName,
+            imageUrlOne: reader.result,
+          });
+          this.handleUploadImages({ imagenOne: reader.result });
+          break;
+        case 'imageTwo':
+          this.setState({
+            urlImageTwo: reader.result,
+            typeTwo: fileType,
+            fileNameTwo: fileName,
+            imageUrlTwo: reader.result,
+          });
+          this.handleUploadImages({ imagenTwo: reader.result });
+          break;
+        case 'imageThree':
+          this.setState({
+            urlImageThree: reader.result,
+            typeThree: fileType,
+            fileNameThree: fileName,
+            imageUrlThree: reader.result,
+          });
+          this.handleUploadImages({ imagenThree: reader.result });
+          break;
+        case 'imageFour':
+          this.setState({
+            urlImageFour: reader.result,
+            typeFour: fileType,
+            fileNameFour: fileName,
+            imageUrlFour: reader.result,
+          });
+          this.handleUploadImages({ imagenFour: reader.result });
+          break;
+        case 'imageFive':
+          this.setState({
+            urlImageFive: reader.result,
+            typeFive: fileType,
+            fileNameFive: fileName,
+            imageUrlFive: reader.result,
+          });
+          this.handleUploadImages({ imagenFive: reader.result });
+          break;
+        case 'imageSix':
+          this.setState({
+            urlImageSix: reader.result,
+            typeSix: fileType,
+            fileNameSix: fileName,
+            imageUrlSix: reader.result,
+          });
+          this.handleUploadImages({ imagenSix: reader.result });
+          break;
+        default:
+          break;
       }
     };
+  }
+
+  handleUploadImages = (image) => {
+    if (image.imagenOne) {
+      this.setState({ imagenOne: image.imagenOne });
+    } else if (image.imagenTwo) {
+      this.setState({ imagenTwo: image.imagenTwo });
+    } else if (image.imagenThree) {
+      this.setState({ imagenThree: image.imagenThree });
+    } else if (image.imagenFour) {
+      this.setState({ imagenFour: image.imagenFour });
+    } else if (image.imagenFive) {
+      this.setState({ imagenFive: image.imagenFive });
+    } else if (image.imagenSix) {
+      this.setState({ imagenSix: image.imagenSix });
+    }
   }
 
   openFile = (field) => {
@@ -202,6 +223,42 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
   }
   handleYearSelected = (event, index, value) => {
     this.setState({ yearSelected: value });
+  }
+
+  handleCreteUser = () => {
+    const { dispatch } = this.props;
+    const {
+      imagenOne,
+      imagenTwo,
+      imagenThree,
+      imagenFour,
+      imagenFive,
+      imagenSix,
+      monthSelected,
+      yearSelected,
+      daySelected,
+      clientId,
+      prospectingId,
+      description,
+      cost,
+    } = this.state;
+    const body = {
+      cost,
+      completionDate: `${yearSelected}-${monthSelected}-${daySelected}`,
+      clientId,
+      prospectingId,
+      description,
+      container: 'project',
+      img: [
+        imagenOne,
+        imagenTwo,
+        imagenThree,
+        imagenFour,
+        imagenFive,
+        imagenSix,
+      ],
+    };
+    dispatch(getProjectRequest(body));
   }
   render() {
     const {
@@ -579,6 +636,7 @@ export class AgregarProyecto extends React.Component { // eslint-disable-line re
 AgregarProyecto.propTypes = {
   AgregarProyecto: PropTypes.object,
   location: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
